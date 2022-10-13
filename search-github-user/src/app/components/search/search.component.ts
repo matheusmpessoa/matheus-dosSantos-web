@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { catchError, of } from 'rxjs';
 import { GithubService } from 'src/app/services/github.service';
-import { ResultsComponent } from '../results/results.component';
+import { ErrorSearchComponent } from '../error-search/error-search.component';
 
 @Component({
   selector: 'app-search',
@@ -13,6 +13,7 @@ import { ResultsComponent } from '../results/results.component';
 export class SearchComponent implements OnInit {
   public searchForm: any;
   public success: boolean = true;
+  public showTableResult: any;
 
   constructor(
     private githubService: GithubService,
@@ -27,14 +28,14 @@ export class SearchComponent implements OnInit {
 
   public createForm() {
     this.searchForm = this.formBuilder.group({
-      username: [''],
-    })
+      username: '',
+    });
   }
 
   public loadSearchResults() {
     this.githubService.getUserInformation('matheusmpessoa')
       .subscribe((res: any) => {
-        console.log(res)
+        this.showTableResult = res;
       });
   }
 
@@ -52,10 +53,10 @@ export class SearchComponent implements OnInit {
         const dialogConfig = new MatDialogConfig<any>();
         if (res.total_count === 0) {
           dialogConfig.data = { success: false };
-          this.dialogRef.open(ResultsComponent, dialogConfig);
+          this.dialogRef.open(ErrorSearchComponent, dialogConfig);
+        } else {
+          this.showTableResult = res;
         }
-
-        console.log(res)
       });
   }
 

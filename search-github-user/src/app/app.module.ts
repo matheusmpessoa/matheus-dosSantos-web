@@ -10,12 +10,14 @@ import { SearchComponent } from './components/search/search.component';
 import { ResultsComponent } from './components/results/results.component';
 import { GithubService } from './services/github.service';
 import { AngularMaterialModule } from './shared/material.module';
+import { ErrorSearchComponent } from './components/error-search/error-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     ResultsComponent,
+    ErrorSearchComponent,
   ],
   imports: [
     BrowserModule,
