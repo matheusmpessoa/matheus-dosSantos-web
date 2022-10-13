@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
   public loadSearchResults() {
     this.githubService.getUserInformation('matheusmpessoa')
       .subscribe((res: any) => {
-        this.showTableResult = res;
+        this.showTableResult = res.items;
       });
   }
 
@@ -43,9 +43,7 @@ export class SearchComponent implements OnInit {
     this.githubService.getUserInformation(this.searchForm.value.username)
       .pipe(
         catchError(err => {
-          if (err) {
-            console.error(err);
-          }
+          if (err) { console.error(err); }
           return of(err != null);
         })
       )
@@ -55,7 +53,7 @@ export class SearchComponent implements OnInit {
           dialogConfig.data = { success: false };
           this.dialogRef.open(ErrorSearchComponent, dialogConfig);
         } else {
-          this.showTableResult = res;
+          this.showTableResult = [...this.showTableResult, res.items[0]];
         }
       });
   }
