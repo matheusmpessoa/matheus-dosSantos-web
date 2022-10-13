@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Search Username on Github</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon group" aria-label="Icon cloud">
+      <mat-icon>group</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="wrapper">
+  <div class="content-search">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <mat-card class="alternate-theme">
+        <mat-form-field>
+          <mat-label>Type an Username</mat-label>
+          <input matInput type="text" class="form-control"
+            placeholder="Ex.: matheusmpessoa" formControlName="username" #username />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="btn-search" type="submit">
+          Search
+        </button>
+      </mat-card>
+    </form>
+  </div>
+</div>
