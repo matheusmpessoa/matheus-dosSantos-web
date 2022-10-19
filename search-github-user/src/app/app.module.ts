@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { ResultsComponent } from './components/results/results.component';
 import { GithubService } from './services/github.service';
 import { AngularMaterialModule } from './shared/material.module';
 import { ErrorSearchComponent } from './components/error-search/error-search.component';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,17 @@ import { ErrorSearchComponent } from './components/error-search/error-search.com
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    MatDialogModule,
   ],
   providers: [
     HttpClientModule,
-    GithubService
+    GithubService,
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+    },
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [ NO_ERRORS_SCHEMA ],
 })
 export class AppModule { }

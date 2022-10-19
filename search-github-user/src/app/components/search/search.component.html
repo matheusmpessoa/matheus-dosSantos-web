@@ -26,5 +26,7 @@
     </form>
   </div>
 
-  <app-results [result]="showTableResult"></app-results>
+  <div *ngIf="success">
+    <app-results [result]="showTableResult"></app-results>
+  </div>
 </div>
