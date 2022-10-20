@@ -1,9 +1,10 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormArray } from '@angular/forms';
+import { FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AngularMaterialModule } from 'src/app/shared/material.module';
 import { ErrorSearchComponent } from '../error-search/error-search.component';
 import { SearchComponent } from './search.component';
@@ -19,20 +20,12 @@ describe('ResultsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         AngularMaterialModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        RouterTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
       ],
-      providers: [
-        { provide: MatDialogRef, useValue: mockDialogRef },
-        {
-          provide: MAT_DIALOG_DATA,
-          useValue: {
-            title: 'myTitle',
-          }
-        }
-      ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [SearchComponent]
     });
 
@@ -44,7 +37,6 @@ describe('ResultsComponent', () => {
 
     TestBed.compileComponents();
   });
-
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);

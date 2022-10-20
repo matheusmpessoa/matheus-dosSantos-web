@@ -20,7 +20,7 @@ describe('GithubService', () => {
     expect(service).toBeTruthy();
   });
 
-  xit('getUserInformation should return value from observable', () => {
+  it('getUserInformation should return value from observable', () => {
     const mockUser = {
       total_count: 1,
       incomplete_results: false,

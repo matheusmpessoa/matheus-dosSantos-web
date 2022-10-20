@@ -1,10 +1,8 @@
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { catchError, of } from 'rxjs';
-import { UserData } from 'src/app/models/user.model';
 import { GithubService } from 'src/app/services/github.service';
-import { ErrorSearchComponent } from '../error-search/error-search.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -18,7 +16,7 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private githubService: GithubService,
-    @Optional() public dialogRef: MatDialog,
+    private router: Router,
     private formBuilder: FormBuilder,
   ) { }
 
@@ -50,10 +48,8 @@ export class SearchComponent implements OnInit {
         })
       )
       .subscribe((res: any) => {
-        const dialogConfig = new MatDialogConfig<any>();
         if (res.total_count === 0) {
-          dialogConfig.data = { success: false };
-          this.dialogRef.open(ErrorSearchComponent, dialogConfig);
+          this.router.navigate(['/error']);
         } else {
           this.success = true;
           this.showTableResult = [...this.showTableResult, res.items[0]];

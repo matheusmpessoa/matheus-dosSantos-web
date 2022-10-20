@@ -1,2 +1,14 @@
-<p>Error! The searched User doens't exist</p>
-<p>Try again</p>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Error</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon group" aria-label="Icon cloud">
+      <mat-icon>group</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="wrapper">
+  <p>Error! Try again</p>
+  <p><a href="/search" routerLink="/search">Back to search</a></p>
+</div>

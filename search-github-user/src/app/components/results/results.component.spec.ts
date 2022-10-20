@@ -1,8 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogRef } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { GithubService } from 'src/app/services/github.service';
 import { ResultsComponent } from './results.component';
 
 describe('ResultsComponent', () => {
@@ -13,14 +13,11 @@ describe('ResultsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        HttpClientTestingModule 
+        HttpClientTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
       ],
-      providers: [{
-        provide: MatDialogRef,
-        useValue: {
-          close: (dialogResult: any) => { }
-        }
-      }],
+      providers: [ GithubService ],
       declarations: [ ResultsComponent ]
     })
     .compileComponents();
