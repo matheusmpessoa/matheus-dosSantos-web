@@ -14,7 +14,7 @@ export class GithubService {
   ) { }
 
   public getUserInformation(login: string): Observable<UserData> {
-    const urlToResquest = `${environment.baseUrl}?q=${login}%20in:${login}`;
+    const urlToResquest = `${environment?.baseUrl}?q=${login}%20in:${login}`;
     return this.http.get<UserData>(urlToResquest);
   }
 }
